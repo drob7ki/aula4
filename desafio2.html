@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio acessibilidade visual</title>
+
+</head>
+<body>
+    <h1>O Eco Invisível do Cotidiano</h1>
+
+    <p>Entre passos apressados e pensamentos soltos, o dia se constrói em
+    pequenos detalhes quase imperceptíveis que moldam a experiência
+    cotidiana.</p> 
+
+
+   <button onclick="ativarDark()">Modo Dark</button>
+    <button onclick="ativarLight()">Modo Light</button>
+
+    <script>
+       let body = document.body;
+
+        function ativarDark() {
+            body.classList.add("dark");
+            body.classList.remove("light");
+            body.style.backgroundColor = "#151515";
+
+            if (!document.getElementById("dark-style")) {
+                let style = document.createElement("style");
+                style.id = "dark-style";
+                style.innerHTML = `
+                    body.dark {
+                        color: #e2eafb;
+                    }
+                    body.dark p {;
+                        color: #e2eafb;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+        }
+
+        function ativarLight() {
+            body.classList.add("light");
+            body.classList.remove("dark");
+            body.style.backgroundColor = "#e2eafb";
+    }
+
+    
+    </script>
+
+</body>
+</html>
