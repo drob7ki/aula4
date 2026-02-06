@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de personagens RPG</title>
+    <link rel="stylesheet" href="desafio.css">
+    <style>
+        body {
+            font-family: inria-serif bold;
+            background-color: #e2eafb;
+            padding: 20px;
+            text-align: center;
+            
+        }
+
+        container {
+            display: block;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #686888;
+            color: white;
+            border-radius: 5px;
+            width: fit-content;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            
+        }
+
+        h1 {
+            color: #151515;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+
+        }
+
+        p {
+            container: initial;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            background-color: #686888;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 25px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: opacity 0.5s ease;
+            
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+
+        script {
+            font-family: inria-serif bold;
+            
+        }
+
+        input {
+            margin: 5px;
+            transform: scale(1.2);
+        }
+            .btn-limpar {
+                background-color: #782424;
+                transition: opacity 0.5s ease;
+            }
+
+        div#resultado {
+                margin-top: 20px;
+                background: white;
+                padding: 15px;
+                border-radius: 8px;
+                display: inline-block;
+                box-shadow: 0 0 5px rgba(0,0,0,0.1);
+                font-family: inria-serif bold;
+            }
+    </style>
+
+</head>
+<body>
+    <container>
+    <h1>Gerador de Personagens RPG</h1>
+    </container>
+
+   <!--checkbox para selecionar as classes desejadas-->
+   <p>Qual a classe desejada?</p>
+
+    <input type="checkbox" id="guerreiro" value="Guerreiro"> Guerreiro<br>
+    <input type="checkbox" id="mago" value="Mago"> Mago<br>
+    <input type="checkbox" id="arqueiro" value="Arqueiro"> Arqueiro<br><br>
+
+    <p>Principais habilidades: </p>
+    <input type="checkbox" id="forca" value="Força"> Força<br>
+    <input type="checkbox" id="magia" value="Magia"> Magia<br>
+    <input type="checkbox" id="agilidade" value="Agilidade"> Agilidade<br><br>
+
+    <!--criar o botão de gerar personagem-->
+    <button onclick="gerarPersonagem()">Gerar Personagem</button>
+    <button class="btn-limpar" onclick="limparcampos()">limpar campos</button>
+
+    <div id="resultado"></div>
+
+    <script>
+
+        //script para gerar o personagem com base nas escolhas do usuario
+
+        function gerarPersonagem() {
+            //captura as classes selecionadas
+            let classesSelecionadas = [];
+            if (document.getElementById("guerreiro").checked) {
+                classesSelecionadas.push(document.getElementById("guerreiro").value);
+            }
+            if (document.getElementById("mago").checked) {
+                classesSelecionadas.push(document.getElementById("mago").value);
+            }
+            if (document.getElementById("arqueiro").checked) {
+                classesSelecionadas.push(document.getElementById("arqueiro").value);
+            }
+
+            //captura as habilidades selecionadas
+            let habilidadesSelecionadas = [];
+            if (document.getElementById("forca").checked) {
+                habilidadesSelecionadas.push(document.getElementById("forca").value);
+            }
+            if (document.getElementById("magia").checked) {
+                habilidadesSelecionadas.push(document.getElementById("magia").value);
+            }
+            if (document.getElementById("agilidade").checked) {
+                habilidadesSelecionadas.push(document.getElementById("agilidade").value);
+            }
+
+            //verifica se o usuario selecionou pelo menos uma classe e uma habilidade
+            if (classesSelecionadas.length === 0 || habilidadesSelecionadas.length === 0) {
+                alert("Por favor, selecione pelo menos uma classe e uma habilidade!");
+                return;
+            }
+
+            //gera a mensagem final
+            let resultado = `Seu personagem é um lendário ${classesSelecionadas.join(", ")} com as seguintes habilidades: ${habilidadesSelecionadas.join(", ")}.`;
+
+            //exibe o resultado
+            document.getElementById("resultado").innerText = resultado;
+        }
+
+        function limparcampos() {
+            //limpa as seleções de classe
+            document.getElementById("guerreiro").checked = false;
+            document.getElementById("mago").checked = false;
+            document.getElementById("arqueiro").checked = false;
+
+            //limpa as seleções de habilidade
+            document.getElementById("forca").checked = false;
+            document.getElementById("magia").checked = false;
+            document.getElementById("agilidade").checked = false;
+
+            //limpa o resultado exibido
+            document.getElementById("resultado").innerText = "";
+        }
+
+</script>
+</body>
+</html>
